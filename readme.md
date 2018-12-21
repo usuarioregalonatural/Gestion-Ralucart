@@ -1,3 +1,25 @@
+
+<p align="center"><img src="https://www.regalonatural.com/img/raluca-art-logo-1537553801.jpg"></p>
+
+## Gestion
+
+Web para la gestion y control de pedidos y compras
+
+Este desarrollo se ha realizado utilizando dockers para:
+- La parte principal web en Apache v.xxx y php7.2 sobre una imagen en Centos:7.6.1810
+- Parte de base de datos en MariaDB v.xxx sobre una imagen en Centos:7.6.1810 
+
+Se utiliza docker-composer para levantar y relacionar los anteriores contenedores con las siguientes características:
+- Web (apache+php)
+  - Puerto de acceso: <b>8090</b>
+  - Los datos contenidos están expuestos en el host principal en la ruta: /home/dockers/gestion-natural/centos-apache-php7.2/web
+  
+Para arrancar los contenedores utilizaremos: 
+```
+docker-compose up
+```
+
+  
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
