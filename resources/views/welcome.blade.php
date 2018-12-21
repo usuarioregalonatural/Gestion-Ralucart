@@ -78,7 +78,7 @@
             @endif
                 <div class="content">
                     <div class="title m-b-md">
-                        <img src="../resources/img/raluca-art-logo-1537553801.jpg">
+                        <img src="img/raluca-art-logo-1537553801.jpg">
                     </div>
 
                     <div class="content">
