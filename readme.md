@@ -13,7 +13,13 @@ Se utiliza docker-composer para levantar y relacionar los anteriores contenedore
 - Web (apache+php)
   - Puerto de acceso: <b>8090</b>
   - Los datos contenidos están expuestos en el host principal en la ruta: /home/dockers/gestion-natural/centos-apache-php7.2/web
-  
+  -  
+ 
+
+
+
+
+ 
 Para arrancar los contenedores utilizaremos: 
 ```
 docker-compose up
