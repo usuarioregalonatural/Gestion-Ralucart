@@ -29,7 +29,7 @@ Dentro de esa ruta se han generado los siguientes ficheros:
 tambien se ha creado la ruta *apache/web* donde, de momento, residirá la web. Más adelante se cambiará la referencia en *docker-compose* para que apunte a donde realmente está nuestra web en el sistema host.
 
 
-### Dockerfile
+### Dockerfile de Apache
 Este fichero contiene la información necesaria para generar una imagen de apache, en este caso se ha optado por **debian:jessie**
 
 El contenido del fichero es el siguiente:
@@ -89,6 +89,15 @@ CMD ["apache2-foreground"]
 
 A tener muy en cuenta que, en la última línea, hace referencia a un fichero **apache2-foreground** que debe existir en el raiz de nuestro directorio, esto es, en */home/dockers/gestion-natural/pack3*
 
+
+### Dockerfile de PHP
+Se genera un dockerfile propio para instalar la extesión de mysqli
+
+```
+FROM php:7.2-fpm
+RUN docker-php-ext-install mysqli
+```
+
 ### docker-compose.yaml
 
 Este fichero realiza el montaje de los docker, la relación entre ellos y los levanta.
@@ -96,36 +105,46 @@ Este fichero realiza el montaje de los docker, la relación entre ellos y los le
 ```
 version: "2"
 services:
+
   mysql:
     image: 'mysql:5.6.35'
+    ports:
+     - "9306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "vmsn2004"
-      MYSQL_DATABASE: docker
+      MYSQL_DATABASE: regalonatural
+    volumes:
+        - /home/webs/gestion-natural/DB-Gestion-Ralucart:/var/lib/mysql
   php:
-      image: php:7.0-fpm
+      build: ./docker-php/
       links:
         - mysql:mysqldb
       volumes:
-        - ./apache:/var/www/html
+        - /home/webs/gestion-natural/Gestion-Ralucart:/var/www/html
   apache:
-    build: ./
+    build: ./docker-apache/
     links:
       - php:phpfpm
     volumes:
-      - ./apache:/var/www/html
+      - /home/webs/gestion-natural/Gestion-Ralucart:/var/www/html
     ports:
       - "8083:80"
+
 
 ```
 
 A destacar varias cosas en este fichero:
 
 * En las secciones php y apache se mapea con el directorio local *./apache*, esto se debería cambiar para que apuntase al raiz de nuestra web. **Ojo** mapea */var/www/html* y sin embargo en el fichero dockerfile se apunta a */var/www/html/public*.
+- [x] Hecho
 
 * Las versiones de mysql, php e incluso apache no son las últimas. Inicialmente lo dejamos así para que funciones y después valoramos hacerle el upgrade necesario.
+ - En mysql no podemos subir de la versión 5.6.35 ya que no funciona.
+ - En php si tenemos la versión 7.2
+ - Apache está en 2.2
 
 * Solo se han mapeado los puertos de apache (8083:80), deberían mapearse también los de mysql para que en el mismo host puedan convivir varios proyectos (de multiples dockers) sin machacarse puertos.
-
+- [x] Hecho. Se ha mapeado también mysql -> 9306:3306
 
 ### Modificaciones en httpd en host
 
