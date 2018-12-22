@@ -127,10 +127,35 @@ A destacar varias cosas en este fichero:
 * Solo se han mapeado los puertos de apache (8083:80), deberían mapearse también los de mysql para que en el mismo host puedan convivir varios proyectos (de multiples dockers) sin machacarse puertos.
 
 
+### Modificaciones en httpd en host
 
+Para poder redirigir desde un dominio hacia localhost:puertoxx, es necesario modificar el fichero httpd.conf que está en /etc/httpd/conf
 
+``` bash
+<VirtualHost example.com:80>
+    ProxyPass / http://localhost:8001
+    ProxyPassReverse / http://localhost:8001
+</VirtualHost>
+```
 
-  
+después reiniciar el servicio con:
+
+```bash
+systemctl restart httpd
+```
+
+## Tareas adicionales
+
+- Se ha tenido que crear en el sistema host (Centos 7) el usuario **www-data** y agregarlo al grupo **apache**
+```bash
+useradd -G apache www-data
+```
+
+- En la carpeta de la web (por encima de /public) ha habido que darle permisos 777 a **todo** 
+
+#### Pendiente
+- [] Revisar y mejorar el tema de permisos
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
