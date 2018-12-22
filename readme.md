@@ -1,29 +1,134 @@
 
+
 <p align="center"><img src="https://www.regalonatural.com/img/raluca-art-logo-1537553801.jpg"></p>
 
-## Gestion
+<center> Gestión de Clientes y Proveedores </center>
+---
 
-Web para la gestion y control de pedidos y compras
+En este proyecto se va a crear la aplicación web de gsetion mediante el uso de dockers utilizando **docker-compose**
 
-Este desarrollo se ha realizado utilizando dockers para:
-- La parte principal web en Apache v.xxx y php7.2 sobre una imagen en Centos:7.6.1810
-- Parte de base de datos en MariaDB v.xxx sobre una imagen en Centos:7.6.1810 
+El procedimiento seguido se ha obtenido de [https://blog.irontec.com/desarrollando-con-docker/](https://blog.irontec.com/desarrollando-con-docker/)
 
-Se utiliza docker-composer para levantar y relacionar los anteriores contenedores con las siguientes características:
-- Web (apache+php)
-  - Puerto de acceso: <b>8090</b>
-  - Los datos contenidos están expuestos en el host principal en la ruta: /home/dockers/gestion-natural/centos-apache-php7.2/web
-  -  
- 
+---
+## Ficheros Creados
 
+Todos los ficheros se han creado en una única ruta: 
 
-
-
- 
-Para arrancar los contenedores utilizaremos: 
 ```
-docker-compose up
+/home/dockers/gestion-natural/pack3
 ```
+
+Dentro de esa ruta se han generado los siguientes ficheros:
+
+* apache2-foreground
+* Dockerfile
+* 000-default.conf
+* docker-compose.yaml
+
+
+tambien se ha creado la ruta *apache/web* donde, de momento, residirá la web. Más adelante se cambiará la referencia en *docker-compose* para que apunte a donde realmente está nuestra web en el sistema host.
+
+
+### Dockerfile
+Este fichero contiene la información necesaria para generar una imagen de apache, en este caso se ha optado por **debian:jessie**
+
+El contenido del fichero es el siguiente:
+
+```
+FROM debian:jessie
+
+RUN apt-get update && apt-get install -y apache2-bin apache2.2-common --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
+ENV APACHE_CONFDIR /etc/apache2
+ENV APACHE_ENVVARS $APACHE_CONFDIR/envvars
+
+RUN set -ex \
+        \
+# generically convert lines like
+#   export APACHE_RUN_USER=www-data
+# into
+#   : ${APACHE_RUN_USER:=www-data}
+#   export APACHE_RUN_USER
+# so that they can be overridden at runtime ("-e APACHE_RUN_USER=...")
+    && sed -ri 's/^export ([^=]+)=(.*)$/: ${\1:=\2}\nexport \1/' "$APACHE_ENVVARS" \
+    \
+# setup directories and permissions
+    && . "$APACHE_ENVVARS" \
+    && for dir in \
+        "$APACHE_LOCK_DIR" \
+        "$APACHE_RUN_DIR" \
+        "$APACHE_LOG_DIR" \
+        /var/www/html \
+    ; do \
+        rm -rvf "$dir" \
+        && mkdir -p "$dir" \
+        && chown -R "$APACHE_RUN_USER:$APACHE_RUN_GROUP" "$dir"; \
+    done
+
+# logs should go to stdout / stderr
+RUN set -ex \
+        && . "$APACHE_ENVVARS" \
+        && ln -sfT /dev/stderr "$APACHE_LOG_DIR/error.log" \
+        && ln -sfT /dev/stdout "$APACHE_LOG_DIR/access.log" \
+        && ln -sfT /dev/stdout "$APACHE_LOG_DIR/other_vhosts_access.log"
+
+COPY apache2-foreground /usr/local/bin/
+RUN chmod +x /usr/local/bin/apache2-foreground
+
+COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
+RUN a2enmod proxy proxy_fcgi
+
+WORKDIR /var/www/html
+
+EXPOSE 80
+
+CMD ["apache2-foreground"]
+
+
+```
+
+A tener muy en cuenta que, en la última línea, hace referencia a un fichero **apache2-foreground** que debe existir en el raiz de nuestro directorio, esto es, en */home/dockers/gestion-natural/pack3*
+
+### docker-compose.yaml
+
+Este fichero realiza el montaje de los docker, la relación entre ellos y los levanta.
+
+```
+version: "2"
+services:
+  mysql:
+    image: 'mysql:5.6.35'
+    environment:
+      MYSQL_ROOT_PASSWORD: "vmsn2004"
+      MYSQL_DATABASE: docker
+  php:
+      image: php:7.0-fpm
+      links:
+        - mysql:mysqldb
+      volumes:
+        - ./apache:/var/www/html
+  apache:
+    build: ./
+    links:
+      - php:phpfpm
+    volumes:
+      - ./apache:/var/www/html
+    ports:
+      - "8083:80"
+
+```
+
+A destacar varias cosas en este fichero:
+
+* En las secciones php y apache se mapea con el directorio local *./apache*, esto se debería cambiar para que apuntase al raiz de nuestra web. **Ojo** mapea */var/www/html* y sin embargo en el fichero dockerfile se apunta a */var/www/html/public*.
+
+* Las versiones de mysql, php e incluso apache no son las últimas. Inicialmente lo dejamos así para que funciones y después valoramos hacerle el upgrade necesario.
+
+* Solo se han mapeado los puertos de apache (8083:80), deberían mapearse también los de mysql para que en el mismo host puedan convivir varios proyectos (de multiples dockers) sin machacarse puertos.
+
+
+
+
 
   
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
