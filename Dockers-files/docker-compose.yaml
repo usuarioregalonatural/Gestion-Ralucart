@@ -1,22 +1,27 @@
 version: "2"
 services:
+
   mysql:
     image: 'mysql:5.6.35'
+    ports:
+     - "9306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "vmsn2004"
-      MYSQL_DATABASE: docker
+      MYSQL_DATABASE: regalonatural
+    volumes:
+        - /home/webs/gestion-natural/DB-Gestion-Ralucart:/var/lib/mysql
   php: 
-      image: php:7.0-fpm
+      build: ./docker-php/
       links: 
         - mysql:mysqldb
       volumes: 
-        - ./apache:/var/www/html
+        - /home/webs/gestion-natural/Gestion-Ralucart:/var/www/html
   apache: 
-    build: ./ 
+    build: ./docker-apache/ 
     links: 
       - php:phpfpm 
     volumes: 
-      - ./apache:/var/www/html
+      - /home/webs/gestion-natural/Gestion-Ralucart:/var/www/html
     ports:
       - "8083:80"
 
