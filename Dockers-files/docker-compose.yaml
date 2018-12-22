@@ -1,0 +1,22 @@
+version: "2"
+services:
+  mysql:
+    image: 'mysql:5.6.35'
+    environment:
+      MYSQL_ROOT_PASSWORD: "vmsn2004"
+      MYSQL_DATABASE: docker
+  php: 
+      image: php:7.0-fpm
+      links: 
+        - mysql:mysqldb
+      volumes: 
+        - ./apache:/var/www/html
+  apache: 
+    build: ./ 
+    links: 
+      - php:phpfpm 
+    volumes: 
+      - ./apache:/var/www/html
+    ports:
+      - "8083:80"
+
