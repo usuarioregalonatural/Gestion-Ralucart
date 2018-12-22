@@ -2,8 +2,8 @@
 
 <p align="center"><img src="https://www.regalonatural.com/img/raluca-art-logo-1537553801.jpg"></p>
 
-<center> Gestión de Clientes y Proveedores </center>
----
+### Gestión de Clientes y Proveedores 
+
 
 En este proyecto se va a crear la aplicación web de gsetion mediante el uso de dockers utilizando **docker-compose**
 
