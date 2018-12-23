@@ -239,7 +239,7 @@ php artisan key:generate
 ```
 luego ir al fichero <code>config/app.php</code> y confirmar que la url es la adecuada
 
-#### Configurar Cache
+### Configurar Cache
 Es bueno recompilar los ficheros de configuración para que el cacheo se haga bien
 Dentro del directorio de la aplicación (*/home/webs/gestion-natural/Gestion-Ralucart*)
 
@@ -252,6 +252,8 @@ Después debe aparece un mensaje como este:
 Configuration cache cleared!
 Configuration cached successfully!
 ```
+
+### Migrar la base de datos
 
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
