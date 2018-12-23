@@ -184,7 +184,6 @@ Estos son los paso para poder poner en producción el proyecto.
 cd ~
 curl -sS https://getcomposer.org/installer | php
 ```
-
 Ahora ya tenemos el archivo <code>composer.phar</code> en nuestro home, tenemos que moverlo a la carpeta de binarios para que pueda ejecutar. Lo renombraremos para que sea más sencillo invocarlo.
 
 ```bash
@@ -195,6 +194,28 @@ Después podemos ejecutar
 [root@vicsoft ~]# composer
 ```
 y comprobar que ejecuta bien.
+
+### Ejecutar Composer en Produccion
+Antes de ejecutar composer tenemos que estar seguros de que estamos situados en el directorio del proyecto (*/home/webs/gestion-natural/Gestion-Ralucart*)
+
+Puede ser que de un error como este:
+```bash
+Your requirements could not be resolved to an installable set of packages.
+
+  Problem 1
+    - laravel/framework v5.7.16 requires ext-mbstring * -> the requested PHP extension mbstring is missing from your system.
+    - laravel/framework v5.7.16 requires ext-mbstring * -> the requested PHP extension mbstring is missing from your system.
+    - Installation request for laravel/framework v5.7.16 -> satisfiable by laravel/framework[v5.7.16].
+```
+
+para solventarlo tendremos que instalar lo necesario:
+
+```bash
+yum install php-mbstring
+```
+Ahora ya debería funcionar la ejecución de Composer.
+
+### Configurar Laravel en Producción
 
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
