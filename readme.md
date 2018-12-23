@@ -4,6 +4,18 @@
 
 ### Gestión de Clientes y Proveedores 
 
+NOTA: Actualmente se ha descartado la utilización de dockers dada su complejidad. De momento, hasta hacer funcionar Laravel en Producción, utilizaremos el servidor host sin dockers.
+
+## Tareas de configuración del server
+
+* Redireccionamiento del dominio gestion.regalonatural.com hacia la ruta adecuada del proyecto mediante Apache
+* Verificación de la instalación y versiones de Apache, PHP y MySql
+
+
+### Redirección del dominio
+
+
+# Versión anterior con dockers
 
 En este proyecto se va a crear la aplicación web de gsetion mediante el uso de dockers utilizando **docker-compose**
 
