@@ -63,3 +63,9 @@ después en el directorio del proyecto, escribimos:
 ```bash
 php artisan migrate
 ```
+
+### Generar las opciones de autentificación
+Para ello en el directorio del proyecto escribiremos:
+```
+php artisan make:auth
+```
