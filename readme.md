@@ -175,6 +175,28 @@ useradd -G apache www-data
 #### Pendiente
 - [] Revisar y mejorar el tema de permisos
 
+
+# Paso a Produccion
+Estos son los paso para poder poner en producción el proyecto.
+
+### Instalar Composer en Produccion
+```bash
+cd ~
+curl -sS https://getcomposer.org/installer | php
+```
+
+Ahora ya tenemos el archivo <code>composer.phar</code> en nuestro home, tenemos que moverlo a la carpeta de binarios para que pueda ejecutar. Lo renombraremos para que sea más sencillo invocarlo.
+
+```bash
+mv composer.phar /usr/local/bin/composer
+```
+Después podemos ejecutar 
+```bash
+[root@vicsoft ~]# composer
+```
+y comprobar que ejecuta bien.
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
