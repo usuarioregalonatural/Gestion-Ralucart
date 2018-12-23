@@ -86,7 +86,7 @@
                     Gestión
                 </div>
 
-                <div class="links">
+             <!--    <div class="links">
                     <a href="https://laravel.com/docs">Clientes</a>
                     <a href="https://laracasts.com">Proveedores</a>
                     <a href="https://laravel-news.com">Informes</a>
@@ -94,6 +94,7 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                        -->
             </div>
         </div>
     </body>
