@@ -10,9 +10,42 @@ NOTA: Actualmente se ha descartado la utilización de dockers dada su complejida
 
 * Redireccionamiento del dominio gestion.regalonatural.com hacia la ruta adecuada del proyecto mediante Apache
 * Verificación de la instalación y versiones de Apache, PHP y MySql
-
+   - Versión de php: PHP 7.2.13
+ 
 
 ### Redirección del dominio
+Para la redirección del dominio, ha sido necesario cambiar en arsys.es el dominio para que apunta a la ip del server
+Creación de carpetas (si no existen) en el server:
+- /etc/httpd/sites-available
+- /etc/httpd/sites-enabled
+
+Dentro de sites-available crear el fichero <code>gestion.regalonatural.com.conf</code> que contendrá:
+```bash
+<VirtualHost *:80>
+    ServerName gestion.regalonatural.com
+    ServerAdmin webmaster@example.com
+    DocumentRoot /var/www/html/gestion
+
+    <Directory /var/www/html/gestion>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+    </Directory>
+
+    ErrorLog /var/log/httpd/gestion.regalonatural.com-error.log
+    CustomLog /var/log/httpd/gestion.regalonatural.com-access.log combined
+</VirtualHost>
+
+```
+Luego dentro de la carpeta sites-enabled, generar el link simbólico:
+```bash
+ln -s /etc/httpd/sites-available/gestion.regalonatural.com.conf gestion.regalonatural.com.conf
+```
+
+Finalmente crearemos un fichero de prueba index.html en la carpeta donde apunta la redirección
+```bash
+/var/www/html/gestion/index.html
+```
+* Esta carpeta deberá ser eliminada y creado un link simbólico hacia la ruta donde tenemos el proyecto.
 
 
 # Versión anterior con dockers
