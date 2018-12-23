@@ -81,8 +81,60 @@ y bajaremos el rpm
 ```bash
 wget http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
 ```
+Ahora prepararemos el repositorio
+```bash
+[root@vicsoft descargas]# rpm -Uvh mysql57-community-release-el7-9.noarch.rpm
+warning: mysql57-community-release-el7-9.noarch.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql57-community-release-el7-9  ################################# [100%]
 
+```
+Cuando llegue al 100% estaremos preparados para instalarlo en el servidor
 
+#### Instalar MySQL en el servidor
+Procederemos con la instalación
+```bash
+yum install mysql-server
+```
+Una vez finalizado reiniciar mysql y comprobar que funciona
+```bash
+systemctl start mysqld
+```
+Probablemente de un error como este:
+```bash
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+```
+Para solucionarlo, editaremos el fichero <code>/etc/my.cnf</code>
+y añadiremos al final del archivo la siguiente línea:
+```bash
+skip-grant-tables
+```
+luego reiniciamo mysql:
+ ```bash
+ systemctl restart mysqld
+  ```
+ y probamos cambiando la password de root
+ ```bash
+ mysql -u root -p
+  ```
+```mysql
+[root@vicsoft gestion]# mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.24 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> 
+```
 
 # Versión anterior con dockers
 
