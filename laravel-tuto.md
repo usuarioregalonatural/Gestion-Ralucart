@@ -30,6 +30,36 @@ Si aparece el error:
 PDOException::("SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes")
 ```
 tenemos que modificar el siguiente archivo incluyendo lo siguiente:
-```php
+<code>app/providers/AppServiceProvider.php</code>
 
+```php
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema; <--añadir esta linea
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        Schema::defaultStringLength(191); <--añadir esta linea
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+}
 ```
