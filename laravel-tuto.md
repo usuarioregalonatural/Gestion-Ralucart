@@ -15,3 +15,6 @@ DB_USERNAME=root
 DB_PASSWORD=xxxxx
 ```
 Seguidamente configuramos IntelliJ para poder ejecutar en local.
+![image info](./tutos/img/Settings-Entorno-01.jpg)
+![image info](./tutos/img/Settings-Entorno-02.jpg)
+![image info](./tutos/img/Settings-Entorno-03.jpg)
