@@ -47,6 +47,42 @@ Finalmente crearemos un fichero de prueba index.html en la carpeta donde apunta 
 ```
 * Esta carpeta deberá ser eliminada y creado un link simbólico hacia la ruta donde tenemos el proyecto.
 
+### Verificación de versiones
+En la ruta /var/www/html/gestion crear un archivo <code>info.php</code> con el siguiente contenido:
+```php
+<?php
+phpinfo();
+?>
+```
+Luego desde el navegador introducir la url: http://gestion.regalonatural.com/info.php para saber las distintas versiones que tenemos
+Actualmente las versiones son las siguientes:
+
+* PHP 7.2.13
+* Apache/2.4.6 (CentOS)
+* MySQL 5.0.12
+
+Según vemos, la versión de MySQL es un poco antigua, vamos a actualizarla
+
+### Actualización de MySQL
+Para la actualización de MySQL en Centos 7 seguiremos los siguientes pasos:
+
+#### Descargar y preparar el repositorio de MySQL
+Actualizamos nuestro sistema
+```bash
+yum update
+```
+
+Descargamos la última versión que podamos. Para ello crearemos un directorio de descargas (si no existe) y nos posicionaremos dentro:
+```bash
+mkdir /home/descargas
+cd /home/descargas
+```
+y bajaremos el rpm
+```bash
+wget http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+```
+
+
 
 # Versión anterior con dockers
 
