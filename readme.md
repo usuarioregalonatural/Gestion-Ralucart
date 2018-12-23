@@ -136,6 +136,11 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql> 
 ```
 
+La info de configuración para el paso a producción se ha obtenido de:
+https://devmarketer.io/learn/deploy-laravel-5-app-lemp-stack-ubuntu-nginx/
+
+Es interesante ver la generación de usuario, por ejemplo.
+
 # Versión anterior con dockers
 
 En este proyecto se va a crear la aplicación web de gsetion mediante el uso de dockers utilizando **docker-compose**
