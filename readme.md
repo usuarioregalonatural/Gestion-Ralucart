@@ -216,6 +216,42 @@ yum install php-mbstring
 Ahora ya debería funcionar la ejecución de Composer.
 
 ### Configurar Laravel en Producción
+Primer paso copiar el fichero de entorno ejemplo como final
+```bash
+cp .env.example .env
+```
+Luego editamos el fichero <code>.env</code> y modificamos lo siguiente:
+```bash
+APP_ENV=production <-- esto
+APP_DEBUG=false <-- esto
+APP_KEY=SomeRandomString (esto se genera luego)
+
+DB_HOST=localhost <-- esto
+DB_DATABASE=gestionatural <-- esto
+DB_USERNAME=root <-- esto
+DB_PASSWORD=XXXXXXXXX <-- esto
+```
+
+Una vez realizadas las modificaciones, guardaremos y generaremos la APP_KEY
+
+```bash
+php artisan key:generate
+```
+luego ir al fichero <code>config/app.php</code> y confirmar que la url es la adecuada
+
+#### Configurar Cache
+Es bueno recompilar los ficheros de configuración para que el cacheo se haga bien
+Dentro del directorio de la aplicación (*/home/webs/gestion-natural/Gestion-Ralucart*)
+
+```bash
+php artisan config:cache
+```
+Después debe aparece un mensaje como este:
+```bash
+[root@vicsoft Gestion-Ralucart]# php artisan config:cache
+Configuration cache cleared!
+Configuration cached successfully!
+```
 
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
