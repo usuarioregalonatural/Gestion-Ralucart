@@ -465,7 +465,7 @@ Luego en el fichero <code>resources/views/welcome.blade.php</code> incluiremos l
     </body>
 ```
 Luego sustituimos el menú en el archivo <code>config/adminlte.php</code>
-```json
+```php
 'menu' => [
         'ACCESO RAPIDO',
         [
