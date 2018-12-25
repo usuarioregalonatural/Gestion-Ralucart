@@ -87,3 +87,12 @@ git add *
 git commit -m "Commit Inicial"
 git push -u origin master
 ```
+## Sincronización en el Server
+Nos movemos al servidor, y en el directorio padre donde vayamos a crearlo, lo clonamos:
+```
+[root@vicsoft Gestion]# git clone https://github.com/usuarioregalonatural/gestionv3.git
+```
+Esto nos creará la carpeta con el proyecto.
+
+
+
