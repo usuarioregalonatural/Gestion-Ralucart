@@ -80,6 +80,20 @@ H:\SERVIDOR-LOCAL\Ampps\www\Proyectos\gestionv3>
 ```
 Después crearemos un nuevo repositorio en github (gestionv3)
 
+Antes de subirlo, necesitamos modificar el fichero <code>.gitignore</code> para que incluya la carpeta /vendor en la sincronización:
+```
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+#/vendor <-- Comentar o quitar esta línea
+.env
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+```
 y en el directorio local lo subiremos:
 ```
 git remote add origin https://github.com/usuarioregalonatural/gestionv3.git
