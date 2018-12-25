@@ -600,3 +600,33 @@ y verificaremos en la web que todo está Ok, si es así, procederemos a:
 - Hacer el pullrequest en GitHub con lo que añadiremos la nueva rama a master
 - Cambiaremos en el servidor a la rama master y haremos un pull para actualizar lo nuevo.
 
+```bash
+[root@vicsoft gesralv1]# git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+[root@vicsoft gesralv1]# git branch
+  01-Instalar-AdminLTE
+  02-Personalizacion-AdminLTE
+* master
+ ``
+ ```bash
+ [root@vicsoft gesralv1]# git pull
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (1/1), done.
+From https://github.com/usuarioregalonatural/gesralv1
+   3b2f4b8..60797bb  master     -> origin/master
+Auto-merging resources/views/welcome.blade.php
+Merge made by the 'recursive' strategy.
+ config/adminlte.php                       | 103 +++++++++++++++++++++++++++++++++++++++++++------------------------------------------------------------
+ public/img/raluca-art-logo-1537553801.jpg | Bin 0 -> 7553 bytes
+ resources/views/welcome.blade.php         |  14 +++++---------
+ 3 files changed, 48 insertions(+), 69 deletions(-)
+ create mode 100644 public/img/raluca-art-logo-1537553801.jpg
+[root@vicsoft gesralv1]#
+```
+
+
+
