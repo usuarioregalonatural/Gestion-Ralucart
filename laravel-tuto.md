@@ -609,7 +609,7 @@ Your branch is ahead of 'origin/master' by 2 commits.
   01-Instalar-AdminLTE
   02-Personalizacion-AdminLTE
 * master
- ``
+ ```
  ```bash
  [root@vicsoft gesralv1]# git pull
 remote: Enumerating objects: 1, done.
