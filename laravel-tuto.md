@@ -421,4 +421,4 @@ php artisan config:cache
 php artisan config:clear
 ```
 ahora debería mostrarse el dashboard de home correctamente estando en el server en la rama nueva y podremos hacer el pull request en git hub para mergear la rama dentro de master
-![](/img/pullrequest.jpg)
+![image info](./tutos/img/pullrequest.jpg))
