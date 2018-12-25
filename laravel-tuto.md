@@ -1,7 +1,7 @@
 # Información manejo Laravel
 
 ### Creación de un nuevo proyecto
-Para la creación de un nuevo proyecto, debemos situarnos en la ruta elegida y utilizar composer
+Para la creación de un nuevo proyecto, debemos situarnos en la ruta elegida, esta debe ser la ruta padre donde se generará el nuevo poryecto y utilizar composer
 ```
 composer create-project laravel/laravel pru01 "5.7.*"
 ```
