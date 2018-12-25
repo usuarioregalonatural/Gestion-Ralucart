@@ -179,4 +179,8 @@ Migrated:  2014_10_12_100000_create_password_resets_table
  ```
  Con esto ya tendremos lista la web en su forma operativa de autentificación básica.
  
+ **En adelante todo lo que hagamos será en nuevas ramas de git verificando que funciona.**
+ 
+ 
+ 
  
