@@ -839,3 +839,24 @@ Ahora vamos a actualizar con el formulario de Proveedores para poder enviar peti
                     </div>
 ```
 
+Ojo, no funcionará tal cual, hay que añadir en el formulario un campo oculto **token** 
+```html
+            <!-- form start -->
+            <form class="form-horizontal" method="POST">
+                <input type="hidden" name="_token" value="{!! csrf_token() !!}">  <-- Esta linea
+                <div class="card-body">
+ 
+```
+
+También es importante modificar en el controller <code>ProvidersController.php</code> para que devuelva todo lo que haya en el formulario:
+```php
+  public function store(Request $request)
+    {
+        return $request->all();
+    }
+```
+una vez realizado, tras recargar la web y enviar la info debería aparecernos la info a enviar:
+```json
+{"_token":"8QazdyTPHnnJjxosseEoJM3XXDnlkMPkgyYtdpQy","nombre":"Pepe","direccion":"dfljdsl"}
+```
+
