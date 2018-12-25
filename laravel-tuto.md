@@ -627,6 +627,173 @@ Merge made by the 'recursive' strategy.
  create mode 100644 public/img/raluca-art-logo-1537553801.jpg
 [root@vicsoft gesralv1]#
 ```
+## Creación de entidades CRUD
 
+### Proveedores
+
+####Crear la tabla de proveedores en la parte de migraciones
+*El nombre de tabla tiene que ser en minúsculas y en plural*
+```
+php artisan make:migration create_providers_table --create=providers
+```
+Esto creará el fichero <code>2018_12_24_155744_create_providers_table.php</code> en la siguiente ruta:
+
+```
+database/migrations
+```
+Siguiente paso editar el fichero e incluir los campos necesarios en la tabla:
+```php
+    public function up()
+    {
+       Schema::create('providers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('cod_proveedor');    <--nueva
+            $table->string('nombre');           <--nueva
+            $table->string('direccion');        <--nueva
+            $table->string('telefono');         <--nueva
+            $table->string('email');            <--nueva
+            $table->string('web');              <--nueva
+            $table->timestamps();
+        });
+    }
+
+```
+Después ejecutar la migración desde la terminal
+```
+php artisan migrate
+```
+* Hay que tener en cuenta que también habrá que ejecutar la migración en Producción.
+
+#### Crear el modelo Proveedor
+El nombre del modelo debe ser en singular y con la primera letra en mayúsculas.
+```
+php artisan make:model Provider
+```
+Después de ejecutarlo, deberá aprecer el siguiente fichero <code>app/Provider.php</code>
+
+Tendría este contenido:
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Provider extends Model
+{
+    //
+}
+
+```
+Si quisieramos que la tabla Proveedores tuviera relación, por ejemplo, con CategoriaProveedor tendríamos que añadir a la clase lo siguiente:
+```php
+return $this->belongTo('App\CategoriaProveedor');
+```
+
+quedando así:
+
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Cliente extends Model
+{
+   return $this->belongsTo('App\CategoriaProveedor');
+}
+
+```
+Para mostrar un atributo, podríamos añadir lo siguiente dentro de la clase:
+```php
+public function getNombre()
+{
+    return $this->nombre;
+}
+```
+#### Creación del controlador de Proveedores 
+Podemos crear un controlador para cada entidad con el comando:
+```php
+php artisan make:controller ProvidersController --resource
+```
+con el parámetro <code>--resource</code> conseguimos que nos cree acciones Restful (crear, editar, etc.)
+Esto nos creará un archivo eh <code>Http/Controllers/ProvidersControllers.php</code> que contendrá las estructuras de control.
+
+
+#### Validaciones Request
+Esto nos permite realizar validaciones previas a nivel de campo antes de enviar a la BBDD
+
+Para crear una nueva request ejecutamos el comando:
+```bash
+php artisan make:request ProvidersFormRequest
+```
+
+Nos creará en la carpeta Http/Request un fichero para realizar las validaciones.
+
+Dentro de este archivo tendremos que cambiar a TRUE el retorno de la función authorize.
+```php
+    public function authorize()
+    {
+        return true; <-- aquí
+    }
+
+```
+En la parte de reglas (rules) podemos indicar nuevas condiciones de validación:
+```php
+    public function rules()
+    {
+        return [
+            'nombre' => 'required|min:3',
+            //
+        ];
+    }
+```
+En este ejemplo, validamos que sea obligatorio informar un dato (required) y que tenga una longitud mínima de 3 caracteres.
+
+Laravel nos exige referenciar una clase en el archivo <code>ProvidersController.php</code>
+```php
+ <?php
+ 
+ namespace App\Http\Controllers;
+ 
+ use Illuminate\Http\Request;
+ use App\Http\Requests\ProvidersFormRequest; <-- Esta linea
+ 
+ class ProveedoresController extends Controller
+ {
+...
+```
+#### Creación de rutas de modelo
+Esto nos permite crear urls amigables.
+Debemos crear las view para proveedores. En <code>Resources/views</code> añadiremos una carpeta providers y dentro de ella un archivo php que se llame <code>altaproviders.blade.php</code>. Este archivo nos servirá para guardar el formulario de alta de proveedores. 
+
+
+Después nos iremos al fichero <code>routes/web.php</code> y lo editaremos para incluir las nuevas rutas.
+En web.php tendremos dos rutas para, por ejemplo, proveedores:
+```php
+Route::get('/providers', 'ProvidersController@create');
+Route::post('/providers', 'ProvidersController@store');
+```
+La primera nos dirigirá cuando se introduzca en el explorador "/providers" a la función create del controler <code>ProvidersController.php</code>
+
+La segunda nos dirigirá a la función create del controler <code>ProvidersController.php</code>
+
+
+En la **primera** nos redirigirá desde <code>ProvidersController.php</code> a la vista de alta donde nos mostrará el formulario de alta 
+```php
+    public function create()
+    {
+        return view('providers.altaprovider');
+    }
+```
+
+En la **segunda** nos redirigirá desde <code>ProvidersController.php</code> al almacenamiento de los datos
+```php
+    public function store()
+    {
+        return view('providers.altaprovider');
+    }
+```
 
 
