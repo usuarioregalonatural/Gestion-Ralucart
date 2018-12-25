@@ -381,3 +381,10 @@ Editaremos el archivo <code>views/home.blade.php</code> para cambiar layouts.app
 
 ```
 una vez registrados, debería llevarnos a la pantalla con formato AdminLTE y su dashboard
+
+#### Actualización en Servidor
+Ahora actualizaremos en github y en el servidor
+* en IntelliJ haremos un <code>git add * </code> para incluir los nuevos archivos y cambios.
+* Luego haremos **commit** y **push** con lo que se quedará la nueva rama incluida en github y pendiente de pull request. Esperamos a hacer el pull request.
+
+
