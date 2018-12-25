@@ -947,7 +947,7 @@ Después nos vamos a la función <code>store</code> y añadimos el siguiente con
             'web' => $request->get('web')
         ));
         $provider->save();
-        return redirect('/altaprovider')->with('status','El proveedor has sido dado de alta.');
+        return redirect('providers')->with('status','El proveedor has sido dado de alta.');
 
     }
 ``` 
@@ -965,4 +965,20 @@ Esto aún no funcionará todavía, debemos configurar para evitar las inyección
  
      protected $fillable =['cod_proveedor','nombre','direccion', 'telefono','email','web']; <-- esta linea
 
-``` 
+```
+Si queremos que muestre que ha ido ok el alta del proveedor, tendremos que incluir en la vista <code>altaprovider.blade.php</code> lo siguiente:
+
+```php
+@extends('adminlte::page')
+
+@section('content')
+--> desde aquí
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+--> hasta aquí
+<div class="row">
+        <div class="col-md-4">
+
