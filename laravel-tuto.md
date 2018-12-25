@@ -883,3 +883,35 @@ Es **importantísimo** que en el archivo <code>ProvidersController.php</code> en
     }
 ```
 
+#### Ya es hora de subir esto a GitHub
+Ahora ya podríamos subir los cambios en este rama a github
+
+```bash
+H:\SERVIDOR-LOCAL\Ampps\www\Proyectos\gesralv1>git status
+On branch 03-CRUD-Proveedores
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   resources/views/providers/altaprovider.blade.php
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   config/adminlte.php
+        modified:   resources/views/providers/altaprovider.blade.php
+        modified:   routes/web.php
+        modified:   vendor/composer/autoload_classmap.php
+        modified:   vendor/composer/autoload_psr4.php
+        modified:   vendor/composer/autoload_static.php
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        app/Http/Controllers/ProvidersController.php
+        app/Http/Requests/
+        app/Provider.php
+        database/migrations/2018_12_25_181237_create_providers_table.php
+
+```
+añadimos los archivos nuevos con <code>git add *</code> y vamos con el commit y el push
