@@ -915,3 +915,54 @@ Untracked files:
 
 ```
 añadimos los archivos nuevos con <code>git add *</code> y vamos con el commit y el push
+
+### Interactuando Proveedores con BBDD
+Aquí vamos a empezar a guardar los datos del formulario de proveedores en la bbdd.
+
+En primer lugar nos vamos al controller. En este caso nos vamos a <code>app/Http/Controllers/ProvidersController.php</code>
+
+e incluimos la referencia a la clase Provider.
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Requests\ProvidersFormRequest;
+use App\Provider;                              <--Esta linea
+
+class ProvidersController extends Controller
+...
+``` 
+Después nos vamos a la función <code>store</code> y añadimos el siguiente contenido:
+```php
+   public function store(ProvidersFormRequest $request)
+    {
+        $provider = new Provider(array(
+            'cod_proveedor' => $request->get('cod_proveedor'),
+            'nombre' => $request->get('nombre'),
+            'direccion' => $request->get('direccion'),
+            'telefono' => $request->get('teleofno'),
+            'email' => $request->get('email'),
+            'web' => $request->get('web')
+        ));
+        $provider->save();
+        return redirect('/altaprovider')->with('status','El proveedor has sido dado de alta.');
+
+    }
+``` 
+Esto aún no funcionará todavía, debemos configurar para evitar las inyección de código. Para ello nos iremos a objeto Proveedor (app/Provider.php) y
+
+```php
+ <?php
+ 
+ namespace App;
+ 
+ use Illuminate\Database\Eloquent\Model;
+ 
+ class Provider extends Model
+ {
+ 
+     protected $fillable =['cod_proveedor','nombre','direccion', 'telefono','email','web']; <-- esta linea
+
+``` 
