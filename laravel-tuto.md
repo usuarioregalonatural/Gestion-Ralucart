@@ -589,4 +589,14 @@ From https://github.com/usuarioregalonatural/gesralv1
 Already up-to-date.
 [root@vicsoft gesralv1]#
 ```
- 
+Nos cambiaremos a la nueva rama:
+```bash
+[root@vicsoft gesralv1]# git checkout 02-Personalizacion-AdminLTE
+Branch 02-Personalizacion-AdminLTE set up to track remote branch 02-Personalizacion-AdminLTE from origin.
+Switched to a new branch '02-Personalizacion-AdminLTE'
+[root@vicsoft gesralv1]#
+```
+y verificaremos en la web que todo está Ok, si es así, procederemos a:
+- Hacer el pullrequest en GitHub con lo que añadiremos la nueva rama a master
+- Cambiaremos en el servidor a la rama master y haremos un pull para actualizar lo nuevo.
+
