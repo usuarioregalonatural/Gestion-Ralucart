@@ -182,5 +182,33 @@ Migrated:  2014_10_12_100000_create_password_resets_table
  **En adelante todo lo que hagamos será en nuevas ramas de git verificando que funciona.**
  
  
+ ## Instalar AdminLTE
+ Esta es una plantilla para Laravel que utilizaremos.
  
+ En principio vamos a hacer la instalación en local para ello en IntelliJ.
+ Lo primero será crear una nueva rama, una vez creada y situandonos en ella, en el terminal escribiremos:
+ ```
+ composer require jeroennoten/laravel-adminlte
+ ```
+ si todo ha ido bien, configuraremos el archivo **config/app.php** para incluir lo siguiente:
+ ```php
+ 'providers' => [
+
+	....
+
+	JeroenNoten\LaravelAdminLte\ServiceProvider::class,
+
+],
  
+```
+una vez modificado ejecutaremos:
+```bash
+php artisan vendor:publish --provider="JeroenNoten\LaravelAdminLte\ServiceProvider" --tag=assets
+```
+y luego lo siguiente:
+```php
+php artisan vendor:publish --provider="JeroenNoten\LaravelAdminLte\ServiceProvider" --tag=config
+```
+
+Teoricamente ya está configurado AdminLTE, ahora vamos a ver si es así:
+
