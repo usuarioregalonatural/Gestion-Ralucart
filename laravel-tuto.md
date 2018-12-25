@@ -413,3 +413,11 @@ Ahora vamos a dar permisos y propietarios a todo para que se incluya lo nuevo:
 [root@vicsoft gesralv1]# chmod -R 777 *
 ```
 
+Probablemente en la rama nueva dentro del servidor tenemos que actualizar lo nuevo:
+```bash
+git add *
+git commit -m "actualizacion"
+php artisan config:cache
+php artisan config:clear
+```
+ahora debería mostrarse el dashboard de home correctamente estando en el server en la rama nueva.
