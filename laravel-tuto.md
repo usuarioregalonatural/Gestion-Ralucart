@@ -383,7 +383,7 @@ Editaremos el archivo <code>views/home.blade.php</code> para cambiar layouts.app
 una vez registrados, debería llevarnos a la pantalla con formato AdminLTE y su dashboard
 
 #### Actualización en Servidor
-Ahora actualizaremos en github y en el servidor
+Ahora actualizaremos en github en el servidor
 * en IntelliJ haremos un <code>git add * </code> para incluir los nuevos archivos y cambios.
 * Luego haremos **commit** y **push** con lo que se quedará la nueva rama incluida en github y pendiente de pull request. Esperamos a hacer el pull request.
 
@@ -407,4 +407,9 @@ Already up-to-date.
 Branch 01-Instalar-AdminLTE set up to track remote branch 01-Instalar-AdminLTE from origin.
 Switched to a new branch '01-Instalar-AdminLTE'
 ```
-Ah
+Ahora vamos a dar permisos y propietarios a todo para que se incluya lo nuevo:
+```bash
+[root@vicsoft gesralv1]# chown -R www-data:apache *
+[root@vicsoft gesralv1]# chmod -R 777 *
+```
+
