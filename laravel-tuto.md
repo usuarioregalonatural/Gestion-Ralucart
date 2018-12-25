@@ -160,4 +160,23 @@ Configuration cached successfully!
 ```
 
 ### Migrar la base de datos
+A continuación procederemos a migrar las tablas a la bbdd de producción:
+ ```bash
+[root@vicsoft gesralv1]# php artisan migrate
+**************************************
+*     Application In Production!     *
+**************************************
 
+ Do you really wish to run this command? (yes/no) [no]:
+ > yes
+
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table
+[root@vicsoft gesralv1]#
+ ```
+ Con esto ya tendremos lista la web en su forma operativa de autentificación básica.
+ 
+ 
