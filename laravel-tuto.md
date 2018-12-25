@@ -422,3 +422,45 @@ php artisan config:clear
 ```
 ahora debería mostrarse el dashboard de home correctamente estando en el server en la rama nueva y podremos hacer el pull request en git hub para mergear la rama dentro de master
 ![image info](./tutos/img/pullrequest.jpg))
+
+## Personalización AdminLTE (home)
+A continuación vamos a personalizar los menús, gráficos, etc.
+
+* Crearemos una carpeta nueva en local
+```
+public/img
+```
+para subir las imagenes que utilicemos.
+
+Subiremos la imagen de logo. 
+
+Luego en el fichero <code>resources/views/welcome.blade.php</code> incluiremos la imagen
+```php
+    <body>
+        <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+
+                     @endauth
+                </div>
+            @endif
+--> añadimos este bloque
+            <div class="content">
+                <div class="title m-b-md">
+                    <img src="img/raluca-art-logo-1537553801.jpg"> 
+                </div>                                            
+                <div class="content">                                              
+                    <div class="title m-b-md">                      
+                        Gestión                                                   
+                    </div>                                                        
+        --> hasta aquí
+
+            </div>
+        </div>
+        </div>
+    </body>
+```
