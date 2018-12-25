@@ -69,3 +69,21 @@ Para ello en el directorio del proyecto escribiremos:
 ```
 php artisan make:auth
 ```
+
+## Subir a Github el proyecto
+En el directorio local, inicializaremos GIT
+```
+H:\SERVIDOR-LOCAL\Ampps\www\Proyectos\gestionv3>git init
+Initialized empty Git repository in H:/SERVIDOR-LOCAL/Ampps/www/Proyectos/gestionv3/.git/
+
+H:\SERVIDOR-LOCAL\Ampps\www\Proyectos\gestionv3>
+```
+Después crearemos un nuevo repositorio en github (gestionv3)
+
+y en el directorio local lo subiremos:
+```
+git remote add origin https://github.com/usuarioregalonatural/gestionv3.git
+git add *
+git commit -m "Commit Inicial"
+git push -u origin master
+```
