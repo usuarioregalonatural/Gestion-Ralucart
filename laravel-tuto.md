@@ -540,3 +540,53 @@ También podemos cambiar en el mismo archivo los títulos:
     'logo_mini' => '<b>Ra</b>lu',
 
 ```
+Antes de subir esta rama, actualizaremos en GIT, viendo el status
+```php
+H:\SERVIDOR-LOCAL\Ampps\www\Proyectos\gesralv1>git status
+On branch 02-Personalizacion-AdminLTE
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   config/adminlte.php
+        modified:   resources/views/welcome.blade.php
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        public/img/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+```
+
+luego añadiendo lo nuevo:
+```php 
+H:\SERVIDOR-LOCAL\Ampps\www\Proyectos\gesralv1>git add *
+```
+y haciendo **commit** y **push**
+
+
+Ahora, una vez incluida la rama en github, comprobaremos en el servidor que todo funciona antes de hacer el pullrequest.
+
+Dentro de la rama master en el serividor:
+```bash
+[root@vicsoft gesralv1]# git branch
+  01-Instalar-AdminLTE
+* master
+[root@vicsoft gesralv1]#
+ ```
+ haremos un git pull y nos dirá que existe una nueva rama:
+  ```bash
+  [root@vicsoft gesralv1]# git pull
+remote: Enumerating objects: 17, done.
+remote: Counting objects: 100% (17/17), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 10 (delta 7), reused 10 (delta 7), pack-reused 0
+Unpacking objects: 100% (10/10), done.
+From https://github.com/usuarioregalonatural/gesralv1
+ * [new branch]      02-Personalizacion-AdminLTE -> origin/02-Personalizacion-AdminLTE
+Already up-to-date.
+[root@vicsoft gesralv1]#
+```
+ 
