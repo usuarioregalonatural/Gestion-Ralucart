@@ -795,5 +795,16 @@ En la **segunda** nos redirigirá desde <code>ProvidersController.php</code> al 
         return view('providers.altaprovider');
     }
 ```
-
+* Ahora es buen momento para referenciar en el menú de AmdinLTE la opción Proveedores hacia la ruta indicada en web.php
+Sustituimos el menú en el archivo <code>config/adminlte.php</code>
+```php
+        'PROVEEDORES',
+        [
+            'text'        => 'Nuevo',
+            'url'         => 'providers', <-- aqui
+            'icon'        => 'briefcase',
+            'icon_color'  => 'yellow',
+            'label_color' => 'success',
+        ],
+```
 
