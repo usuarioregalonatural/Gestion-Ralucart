@@ -533,3 +533,10 @@ Luego sustituimos el menú en el archivo <code>config/adminlte.php</code>
     |--------------------------------------------------------------------------
 ```
     
+También podemos cambiar en el mismo archivo los títulos:
+```php
+    'logo' => '<b>Gestion</b> Raluca Art',
+
+    'logo_mini' => '<b>Ra</b>lu',
+
+```
