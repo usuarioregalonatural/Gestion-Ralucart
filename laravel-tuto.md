@@ -94,5 +94,39 @@ Nos movemos al servidor, y en el directorio padre donde vayamos a crearlo, lo cl
 ```
 Esto nos creará la carpeta con el proyecto.
 
+Acto seguido creamos en link simbólico en la carpeta de acceso web del servidor hacia donde tenemos nuestro proyecto:
+```bash
+[root@vicsoft html]# pwd
+/var/www/html
+[root@vicsoft html]# mv gestion 20181225-gestion
+[root@vicsoft html]# ln -s /home/webs/Gestion/gestionv3/public gestion
+```
+Después le asignamos permisos y propietarios a la carpeta:
+ ```bash
+[root@vicsoft gestionv3]# chown -R www-data:apache *
+[root@vicsoft gestionv3]# chmod -R 777 *
+```
 
+y por último creamos y configuramos el fichero .env en la raiz de nuestro proyecto:
+
+```bash
+[root@vicsoft gestionv3]# cp .env.example .env
+```
+luego editamos el fichero .env y lo dejamos como sigue:
+ ```bash
+ APP_NAME=Gestion
+APP_ENV=production
+APP_KEY=
+APP_DEBUG=false
+APP_URL=http://localhost
+
+LOG_CHANNEL=stack
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=gestionv3
+DB_USERNAME=root
+DB_PASSWORD={mi_password}
+ ```
 
