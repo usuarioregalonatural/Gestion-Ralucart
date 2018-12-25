@@ -387,4 +387,24 @@ Ahora actualizaremos en github y en el servidor
 * en IntelliJ haremos un <code>git add * </code> para incluir los nuevos archivos y cambios.
 * Luego haremos **commit** y **push** con lo que se quedará la nueva rama incluida en github y pendiente de pull request. Esperamos a hacer el pull request.
 
-
+* En el server haremos un pull para actualizar con los nuevos ficheros:
+```bash 
+[root@vicsoft gesralv1]# git pull
+[root@vicsoft gesralv1]# git pull
+remote: Enumerating objects: 207, done.
+remote: Counting objects: 100% (207/207), done.
+remote: Compressing objects: 100% (103/103), done.
+remote: Total 187 (delta 54), reused 187 (delta 54), pack-reused 0
+Receiving objects: 100% (187/187), 1.47 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (54/54), completed with 19 local objects.
+From https://github.com/usuarioregalonatural/gesralv1
+ * [new branch]      01-Instalar-AdminLTE -> origin/01-Instalar-AdminLTE
+Already up-to-date.
+```
+- Nos creará la nueva rama en el servidor y pasaremos a cambiar a esta rama:
+```bash
+[root@vicsoft gesralv1]# git checkout 01-Instalar-AdminLTE
+Branch 01-Instalar-AdminLTE set up to track remote branch 01-Instalar-AdminLTE from origin.
+Switched to a new branch '01-Instalar-AdminLTE'
+```
+Ah
