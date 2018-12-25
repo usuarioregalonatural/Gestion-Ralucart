@@ -107,26 +107,43 @@ Después le asignamos permisos y propietarios a la carpeta:
 [root@vicsoft gestionv3]# chmod -R 777 *
 ```
 
-y por último creamos y configuramos el fichero .env en la raiz de nuestro proyecto:
+### Configurar Laravel en Producción
+Primer paso copiar el fichero de entorno ejemplo como final
+```bash
+cp .env.example .env
+```
+Luego editamos el fichero <code>.env</code> y modificamos lo siguiente:
+```bash
+APP_ENV=production <-- esto
+APP_DEBUG=false <-- esto
+APP_KEY=SomeRandomString (esto se genera luego)
+
+DB_HOST=localhost <-- esto
+DB_DATABASE=gestionatural <-- esto
+DB_USERNAME=root <-- esto
+DB_PASSWORD=XXXXXXXXX <-- esto
+```
+
+Una vez realizadas las modificaciones, guardaremos y generaremos la APP_KEY
 
 ```bash
-[root@vicsoft gestionv3]# cp .env.example .env
+php artisan key:generate
 ```
-luego editamos el fichero .env y lo dejamos como sigue:
- ```bash
- APP_NAME=Gestion
-APP_ENV=production
-APP_KEY=
-APP_DEBUG=false
-APP_URL=http://localhost
+luego ir al fichero <code>config/app.php</code> y confirmar que la url es la adecuada
 
-LOG_CHANNEL=stack
+### Configurar Cache
+Es bueno recompilar los ficheros de configuración para que el cacheo se haga bien
+Dentro del directorio de la aplicación (*/home/webs/gestion-natural/Gestion-Ralucart*)
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=gestionv3
-DB_USERNAME=root
-DB_PASSWORD={mi_password}
- ```
+```bash
+php artisan config:cache
+```
+Después debe aparece un mensaje como este:
+```bash
+[root@vicsoft Gestion-Ralucart]# php artisan config:cache
+Configuration cache cleared!
+Configuration cached successfully!
+```
+
+### Migrar la base de datos
 
