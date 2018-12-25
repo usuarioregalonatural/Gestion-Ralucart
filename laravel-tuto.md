@@ -627,11 +627,11 @@ Merge made by the 'recursive' strategy.
  create mode 100644 public/img/raluca-art-logo-1537553801.jpg
 [root@vicsoft gesralv1]#
 ```
-## Creación de entidades CRUD
+# Creación de entidades CRUD
 
-### Proveedores
+## Proveedores
 
-####Crear la tabla de proveedores en la parte de migraciones
+###Crear la tabla de proveedores en la parte de migraciones
 *El nombre de tabla tiene que ser en minúsculas y en plural*
 ```
 php artisan make:migration create_providers_table --create=providers
@@ -664,7 +664,7 @@ php artisan migrate
 ```
 * Hay que tener en cuenta que también habrá que ejecutar la migración en Producción.
 
-#### Crear el modelo Proveedor
+### Crear el modelo Proveedor
 El nombre del modelo debe ser en singular y con la primera letra en mayúsculas.
 ```
 php artisan make:model Provider
@@ -712,7 +712,7 @@ public function getNombre()
     return $this->nombre;
 }
 ```
-#### Creación del controlador de Proveedores 
+### Creación del controlador de Proveedores 
 Podemos crear un controlador para cada entidad con el comando:
 ```php
 php artisan make:controller ProvidersController --resource
@@ -721,7 +721,7 @@ con el parámetro <code>--resource</code> conseguimos que nos cree acciones Rest
 Esto nos creará un archivo eh <code>Http/Controllers/ProvidersControllers.php</code> que contendrá las estructuras de control.
 
 
-#### Validaciones Request
+### Validaciones Request
 Esto nos permite realizar validaciones previas a nivel de campo antes de enviar a la BBDD
 
 Para crear una nueva request ejecutamos el comando:
@@ -764,7 +764,7 @@ Laravel nos exige referenciar una clase en el archivo <code>ProvidersController.
  {
 ...
 ```
-#### Creación de rutas de modelo
+### Creación de rutas de modelo
 Esto nos permite crear urls amigables.
 Debemos crear las view para proveedores. En <code>Resources/views</code> añadiremos una carpeta providers y dentro de ella un archivo php que se llame <code>altaproviders.blade.php</code>. Este archivo nos servirá para guardar el formulario de alta de proveedores. 
 
@@ -806,5 +806,36 @@ Sustituimos el menú en el archivo <code>config/adminlte.php</code>
             'icon_color'  => 'yellow',
             'label_color' => 'success',
         ],
+```
+### Creando la página de Proveedores
+Lo primero que haremos es modificar el archivo <code>altaproviders.blade.php</code> para ponerle una estructura de blade e incluirle la referencia que extienda la plantilla de AdminLTE
+```php
+@extends('adminlte::page')
+
+@section('content')
+
+    // Aquí irá el contenido de la página (formularios, botones, imagenes, etc)
+    
+@endsection
+```
+
+Ahora vamos a actualizar con el formulario de Proveedores para poder enviar peticiones POST y con los nombres de los campos en los objetos (estos nombres deben coincidir con los nombres de los campos de la bbdd.
+```html
+           <form class="form-horizontal" method="POST"> <--se añade post para la función de altas
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="nombre" class="col-sm-2 control-label">Nombre:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="nombre" placeholder="nombre" name="nombre"> <--se añade name
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion" class="col-sm-2 control-label">Dirección:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="direccion" placeholder="direccion" name="direccion"> <--se añade name
+                        </div>
+                    </div>
 ```
 
