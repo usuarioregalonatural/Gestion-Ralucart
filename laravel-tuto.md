@@ -464,3 +464,72 @@ Luego en el fichero <code>resources/views/welcome.blade.php</code> incluiremos l
         </div>
     </body>
 ```
+Luego sustituimos el menú en el archivo <code>config/adminlte.php</code>
+```json
+'menu' => [
+        'ACCESO RAPIDO',
+        [
+            'text'        => 'Pedidos Clientes',
+            'url'         => 'clientes/pedidos',
+            'icon'        => 'shopping-cart',
+            'icon_color'  => 'green',
+            // 'label'       => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Compras Proveedores',
+            'url'         => 'proveedores/compras',
+            'icon'        => 'credit-card',
+            'icon_color'  => 'blue',
+
+            // 'label'       => 4,
+            'label_color' => 'success',
+        ],
+        'CLIENTES',
+        [
+            'text'        => 'Nuevo',
+            'url'         => 'nuevo_cliente',
+            'icon'        => 'user',
+            'icon_color'  => 'aqua',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Buscar',
+            'url'         => 'ver_clientes',
+            'icon'        => 'search',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Informes',
+            'url'         => 'clientes/informes',
+            'icon'        => 'list-alt',
+            'label_color' => 'success',
+        ],
+        'PROVEEDORES',
+        [
+            'text'        => 'Nuevo',
+            'url'         => 'proveedores',
+            'icon'        => 'briefcase',
+            'icon_color'  => 'yellow',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Buscar',
+            'url'         => 'proveedores/busqueda',
+            'icon'        => 'search',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Informes',
+            'url'         => 'proveedores/informes',
+            'icon'        => 'list-alt',
+            'label_color' => 'success',
+        ],
+ ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Filters
+    |--------------------------------------------------------------------------
+```
+    
