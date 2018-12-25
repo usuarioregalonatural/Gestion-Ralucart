@@ -860,3 +860,26 @@ una vez realizado, tras recargar la web y enviar la info debería aparecernos la
 {"_token":"8QazdyTPHnnJjxosseEoJM3XXDnlkMPkgyYtdpQy","nombre":"Pepe","direccion":"dfljdsl"}
 ```
 
+##### Ahora aplicaremos las validaciones para los Request:
+Donde reside el formulario "altaprovider.blade.php"  en la parte del **form**  añadiremos un *@foreach-error* para controlarlo.
+```html
+            <!-- form start -->
+            <form class="form-horizontal" method="POST">
+            
+                @foreach ($errors->all() as $error)             <--nueva
+                <p class="alert alert-danger">{{ $error }}</p>  <--nueva
+                @endforeach                                     <--nueva
+                
+                <input type="hidden" name="_token" value="{!! csrf_token() !!}">  <-- Esta linea
+                <div class="card-body">
+ 
+```
+Es **importantísimo** que en el archivo <code>ProvidersController.php</code> en la función store el request sea el ProvidersFormRequest que hemos deifinido antes:
+
+```php
+    public function store(ProvidersFormRequest $request)
+    {
+        return $request->all();
+    }
+```
+
